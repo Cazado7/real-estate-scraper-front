@@ -21,6 +21,8 @@
 
 /* Global reset */
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -38,44 +40,33 @@ html {
   background: #fff;
 }
 
-header {
-  display: flex;
-  flex-wrap: wrap;
-  background: #8d8e90;
-  height: 4.6rem;
-  justify-content: space-between;
-  align-items: center;
-  padding: 4px;
-
-  /* position: fixed;
+/* HEADER */
+.header-container {
+  position: fixed;
+  width: 100%;
+  z-index: 999;
   top: 0;
-  left: 0;
-  width: 100%; */
-  /* z-index: 999; */
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #8d8e90;
+  height: 4rem;
+  padding: 0 1rem;
 }
 
-.logoEntidad {
-  background: #fff;
-  border: solid 1px;
-  border-radius: 6px;
-  width: 8rem;
-  height: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
+/* Ajusta el padding superior del body si tu contenido queda tapado por el header */
+
+.logoEntidad1 {
+  width: 13rem;
   cursor: pointer;
 }
 
 .logo {
   width: 4rem;
 }
-.logoEntidad1 {
-  width: 13rem;
-  cursor: pointer;
-}
 
-/* ---- animación ligera para el menú ---- */
+/* Animación sencilla para el menú */
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -91,4 +82,13 @@ header {
   .animate-fade-in {
     animation: fade-in 150ms ease-out forwards;
   }
+}
+.menuPerfil {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.button {
+  margin-right: 1rem;
 }

@@ -1,37 +1,74 @@
 "use client";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import styles from "../styles/dash.module.css";
+
+interface FavoriteItem {
+  title: string;
+  link: string;
+  snippet: string;
+}
 
 export default function DashboardPage() {
-  const router = useRouter();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [favorites, setFavorites] = useState<FavoriteItem[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Aquí validarías el token o sesión
-    // if (!checkIfUserIsLogged()) {
-    //   router.push("/login");
-    // } else {
-    //   setIsLoggedIn(true);
-    // }
-    setIsLoggedIn(true); // Ejemplo
-  }, [router]);
+    const fetchFavorites = async () => {
+      try {
+        const { data } = await axios.get<FavoriteItem[]>(
+          "http://localhost:3001/favorites"
+        );
+        setFavorites(data);
+      } catch (error) {
+        console.error("Error:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchFavorites();
+  }, []);
 
-  if (!isLoggedIn) {
-    return <p>Verificando sesión...</p>;
-  }
+  const handleRemove = async (link: string) => {
+    try {
+      await axios.delete("http://localhost:3001/favorites", {
+        params: { link },
+      });
+      setFavorites((prev) => prev.filter((fav) => fav.link !== link));
+    } catch (err) {
+      console.error(err);
+      alert("Error al eliminar favorito");
+    }
+  };
 
   return (
-    <main className="min-h-screen bg-gray-100 p-8">
-      <h1 className="text-3xl font-bold mb-4">Dashboard</h1>
-      <p className="mb-6">
-        Bienvenido a tu panel de control. Aquí podrías ver:
-      </p>
-      <ul className="list-disc list-inside mb-6">
-        <li>Historial de búsquedas</li>
-        <li>Propiedades guardadas como “favoritas”</li>
-        <li>Estadísticas de uso</li>
-      </ul>
-      {/* Agrega tu lógica para mostrar datos guardados, etc. */}
+    <main className={styles.container}>
+      <h1 className={styles.title}>Dashboard</h1>
+      <p className={styles.description}>Tus búsquedas favoritas de Google.</p>
+
+      {loading ? (
+        <p>Cargando favoritos...</p>
+      ) : favorites.length > 0 ? (
+        <div className={styles.favsGrid}>
+          {favorites.map((fav, i) => (
+            <div key={i} className={styles.card}>
+              <h2>{fav.title}</h2>
+              <a
+                href={fav.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "blue", textDecoration: "underline" }}
+              >
+                {fav.link}
+              </a>
+              <p>{fav.snippet}</p>
+              <button onClick={() => handleRemove(fav.link)}>Eliminar</button>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p>No tienes favoritos guardados</p>
+      )}
     </main>
   );
 }

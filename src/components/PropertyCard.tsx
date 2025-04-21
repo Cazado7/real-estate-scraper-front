@@ -1,25 +1,42 @@
+// PropertyCard.tsx (o .jsx)
 "use client";
 
-interface Property {
-  title: string;
-  location: string;
-  type: string;
-  mode: string;
-  price: number;
-}
+import axios from "axios";
 
-interface PropertyCardProps {
-  property: Property;
-}
+export default function PropertyCard({ property }: { property: any }) {
+  const handleAddToFavorites = async () => {
+    try {
+      await axios.post("http://localhost:3001/favorites", {
+        property,
+      });
+      alert("Propiedad guardada en favoritos");
+    } catch (err) {
+      console.error(err);
+      alert("Error guardando la propiedad");
+    }
+  };
 
-export default function PropertyCard({ property }: PropertyCardProps) {
   return (
-    <div className="border rounded-lg p-4 shadow-sm flex flex-col justify-between">
-      <h2 className="font-bold text-lg mb-2">{property.title}</h2>
-      <p className="text-gray-600">Ubicación: {property.location}</p>
-      <p className="text-gray-600">Tipo: {property.type}</p>
-      <p className="text-gray-600">Modalidad: {property.mode}</p>
-      <p className="font-semibold mt-2">Precio: ${property.price}</p>
+    <div className="border rounded p-4">
+      <h2 className="font-bold text-lg">{property.title}</h2>
+      <p>{property.location}</p>
+      <p>{property.price}</p>
+      <a
+        href={property.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-blue-600 underline"
+      >
+        Ver Detalles
+      </a>
+
+      {/* Botón para guardar en favoritos */}
+      <button
+        onClick={handleAddToFavorites}
+        className="bg-green-500 text-white px-4 py-2 mt-2 rounded block"
+      >
+        Agregar a Favoritos
+      </button>
     </div>
   );
 }

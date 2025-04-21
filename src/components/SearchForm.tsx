@@ -3,78 +3,46 @@
 import { useState } from "react";
 
 interface SearchFormProps {
-  onSearch: (filters: {
-    location: string;
-    type: string;
-    mode: string;
-    maxPrice: string;
-  }) => void;
+  onSearch: (query: string) => void;
   loading: boolean;
 }
 
 export default function SearchForm({ onSearch, loading }: SearchFormProps) {
-  const [filters, setFilters] = useState({
-    location: "",
-    type: "",
-    mode: "",
-    maxPrice: "",
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFilters({
-      ...filters,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const [query, setQuery] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSearch(filters);
+    onSearch(query);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4">
+    <form onSubmit={handleSubmit} style={{ display: "flex", gap: "1rem" }}>
       <input
         type="text"
-        name="location"
-        placeholder="Ubicación (Ej: Betania)"
-        className="border p-2 rounded"
-        onChange={handleChange}
-        value={filters.location}
+        placeholder="Buscar"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        style={{
+          flex: "1",
+          padding: "0.5rem",
+          border: "1px solid #ccc",
+          borderRadius: "4px",
+        }}
       />
-      <input
-        type="text"
-        name="type"
-        placeholder="Tipo (Ej: Apartamento, Casa)"
-        className="border p-2 rounded"
-        onChange={handleChange}
-        value={filters.type}
-      />
-      <input
-        type="text"
-        name="mode"
-        placeholder="Modalidad (Ej: Alquiler, Venta)"
-        className="border p-2 rounded"
-        onChange={handleChange}
-        value={filters.mode}
-      />
-      <input
-        type="number"
-        name="maxPrice"
-        placeholder="Precio Máximo"
-        className="border p-2 rounded"
-        onChange={handleChange}
-        value={filters.maxPrice}
-      />
-      <div className="col-span-2 text-center">
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
-          disabled={loading}
-        >
-          {loading ? "Buscando..." : "Buscar"}
-        </button>
-      </div>
+      <button
+        type="submit"
+        disabled={loading}
+        style={{
+          backgroundColor: "#2563eb",
+          color: "#fff",
+          padding: "0.5rem 1rem",
+          borderRadius: "4px",
+          cursor: "pointer",
+          border: "none",
+        }}
+      >
+        {loading ? "Buscando..." : "Buscar"}
+      </button>
     </form>
   );
 }

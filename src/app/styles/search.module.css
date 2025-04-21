@@ -1,0 +1,67 @@
+/* SearchPage.module.css */
+
+/* Equivalente a "min-h-screen bg-gray-50 p-6" */
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  margin-top: 5rem;
+  height: 100%;
+}
+
+/* Equivalente a "max-w-4xl mx-auto bg-white shadow rounded p-6" */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Equivalente a "text-3xl font-semibold mb-4 text-center" */
+.title {
+  font-size: 1.875rem; /* text-3xl */
+  font-weight: 600; /* font-semibold */
+  margin-bottom: 1rem; /* mb-4 */
+  text-align: center;
+}
+
+/* Equivalente a "text-red-600 text-center mt-4" */
+.errorMessage {
+  color: #dc2626; /* text-red-600 */
+  text-align: center;
+  margin-top: 1rem; /* mt-4 */
+}
+
+/* Equivalente a "mt-6" */
+.resultsContainer {
+  margin-top: 1.5rem;
+}
+
+/* Equivalente a "text-center" */
+.loadingText {
+  text-align: center;
+}
+
+/* Equivalente a "grid grid-cols-1 md:grid-cols-2 gap-4" */
+.resultsGrid {
+  display: grid;
+  grid-template-columns: 1fr; /* grid-cols-1 */
+  gap: 1rem; /* gap-4 = 1rem */
+}
+
+/* Para "md:grid-cols-2" en Tailwind => media query ~768px */
+@media (min-width: 768px) {
+  .resultsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Equivalente a "text-center text-gray-500" */
+.noResults {
+  text-align: center;
+  color: #6b7280; /* text-gray-500 */
+}

@@ -1,0 +1,43 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+}
+
+.title {
+  font-size: 2rem;
+  color: #000000;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.description {
+  font-size: 1.2rem;
+  color: #1f1f1f;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+.list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ======= Contenedor de la DataGrid ======= */
+.dataGridContainer {
+  width: 100%;
+  max-width: 1200px;
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ======= Responsivo ======= */
+@media (max-width: 768px) {
+  .wrapDash100 {
+    width: 90%;
+  }
+}

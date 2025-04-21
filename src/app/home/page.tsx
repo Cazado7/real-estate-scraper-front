@@ -8,7 +8,7 @@ export default function HomePage() {
         <img src="/logo.png" alt="logoEntidad" className="max-width: 1rem;" />
       </div>
 
-      <h1 className="text-4xl font-bold mb-4">Encuentra tu propiedad ideal</h1>
+      <h1 className="text-4xl font-bold mb-4">Encuentra tu propiedad Ideal</h1>
       <p className="max-w-xl text-center mb-6">
         Buscamos en tiempo real las mejores ofertas de propiedades en distintos
         portales inmobiliarios. Ahorra tiempo y dinero dejando que nuestro
