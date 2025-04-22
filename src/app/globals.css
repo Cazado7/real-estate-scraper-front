@@ -42,9 +42,7 @@ html {
 
 /* HEADER */
 .header-container {
-  position: fixed;
-  width: 100%;
-  z-index: 999;
+  position: sticky;
   top: 0;
 
   display: flex;
@@ -53,6 +51,10 @@ html {
   background-color: #8d8e90;
   height: 4rem;
   padding: 0 1rem;
+}
+
+.header-container1 {
+  display: flex;
 }
 
 /* Ajusta el padding superior del body si tu contenido queda tapado por el header */

@@ -1,4 +1,3 @@
-// PropertyCard.tsx (o .jsx)
 "use client";
 
 import axios from "axios";
@@ -30,7 +29,6 @@ export default function PropertyCard({ property }: { property: any }) {
         Ver Detalles
       </a>
 
-      {/* Botón para guardar en favoritos */}
       <button
         onClick={handleAddToFavorites}
         className="bg-green-500 text-white px-4 py-2 mt-2 rounded block"

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import axios from "axios";
 import SearchForm from "@/components/SearchForm";
-import styles from "../styles/search.module.css"; // Ajusta la ruta si tu CSS module está en otro lugar
+import styles from "../styles/search.module.css";
 
 interface GoogleResult {
   title: string;
